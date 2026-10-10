@@ -1,0 +1,50 @@
+{
+  "measured_at_utc": "2026-10-10T22:34:16Z",
+  "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+  "index": {
+    "documents": 474,
+    "jobs": {
+      "complete": 9
+    },
+    "version": 10,
+    "chunks": 474,
+    "dimensions": 48,
+    "vector_bytes": 597536,
+    "metrics": {
+      "cache_misses": 636,
+      "searches": 1236,
+      "cache_hits": 600
+    },
+    "cache_entries": 36,
+    "server_search_p95_ms": 13.618,
+    "generator_ready": false,
+    "read_only": false,
+    "embedding": "corpus-trained TF-IDF + randomized LSA (48 dimensions maximum)"
+  },
+  "queued_rebuild_seconds": 0.601,
+  "uncached": {
+    "queries": 600,
+    "workers": 8,
+    "cache_enabled": false,
+    "seconds": 0.8722,
+    "queries_per_second": 687.88,
+    "p50_ms": 10.703,
+    "p95_ms": 17.811,
+    "p99_ms": 26.73,
+    "empty_results": 0,
+    "cache_hits": 0
+  },
+  "warm_cache": {
+    "queries": 600,
+    "workers": 8,
+    "cache_enabled": true,
+    "seconds": 0.0539,
+    "queries_per_second": 11127.39,
+    "p50_ms": 0.431,
+    "p95_ms": 0.594,
+    "p99_ms": 8.519,
+    "empty_results": 0,
+    "cache_hits": 600
+  },
+  "scope": "In-process exact hybrid retrieval; excludes HTTP, authentication, rate limits, and local LLM generation. Synthetic replicated runbooks; not production traffic. Warm-cache results are explicitly separate."
+}

@@ -32,3 +32,11 @@ Zero empty results; warm cache had 600 hits. Nine queued rebuilds took 0.289 sec
 ## Reproduce
 
 See README for tests, evaluation, benchmark, Docker, and optional local-model checks. GitHub Actions also runs the tests and a Docker HTTP smoke check; local Docker was unavailable during development. Check the repository Actions page for its recorded outcome.
+
+## Hosted CI — passed
+
+[Verify Atlas run 38091906808](https://github.com/SriMaddireddy/atlas-retrieval/actions/runs/38091906808) passed on implementation commit `cb5c2178deaf6ca07133da9c7160b336ed5dcf42`. It ran all 30 tests, retrieval evaluation, the benchmark, a non-root Docker Compose build and health check, and live HTTP smoke checks. Local model inference was tested on this Mac, not in hosted CI.
+
+The downloaded `evaluation-ci.json`, `benchmark-ci.json`, and `http-smoke-ci.json` preserve the hosted measurements. The documentation-only follow-up commit does not change the tested implementation.
+
+Desktop and 390-pixel mobile layouts were checked in a real browser, including no horizontal overflow at the mobile breakpoint.
