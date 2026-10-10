@@ -1,0 +1,162 @@
+{
+  "platform": [
+    {
+      "id": "pool",
+      "title": "Connection pool exhaustion",
+      "body": "When database connections are exhausted, request queues grow and acquisition timeouts rise. Inspect active versus idle connections and the wait time histogram. Find long transactions holding connections. Cancel the offending transaction after identifying its owner. Reduce application concurrency before raising the pool size. Keep total connection limits below the database capacity. A larger pool alone can increase contention.",
+      "source": "local://runbooks/pool"
+    },
+    {
+      "id": "lag",
+      "title": "Kafka consumer lag",
+      "body": "Consumer lag measures the distance between the broker log end and the committed consumer offset. Check lag per partition rather than only a topic total. A hot partition can bottleneck one consumer. Inspect processing latency, downstream dependencies, rebalances, and checkpoint duration. Increase partitions only after reviewing key distribution and ordering requirements. Adding more consumers than partitions does not increase parallelism.",
+      "source": "local://runbooks/lag"
+    },
+    {
+      "id": "cache",
+      "title": "Stale cache after a configuration change",
+      "body": "A configuration update commits to the database before cache invalidation. If invalidation fails, the old value can remain until its time to live expires. Include a version in cache keys or publish invalidation events for stronger freshness. Monitor invalidation errors and cap the TTL. Never assume a successful database write immediately updates every cached reader.",
+      "source": "local://runbooks/cache"
+    },
+    {
+      "id": "retry",
+      "title": "Retry storm containment",
+      "body": "During an outage synchronized retries amplify load and prevent recovery. Use bounded exponential backoff with jitter, a retry budget, and deadlines. Retry only transient failures. Idempotency keys prevent duplicate side effects but do not eliminate retry load. Open a circuit after repeated failures and allow limited probes while recovering.",
+      "source": "local://runbooks/retry"
+    },
+    {
+      "id": "lock",
+      "title": "Database lock contention",
+      "body": "Lock wait time increases when transactions hold locks too long or acquire them in inconsistent order. Inspect blocking transaction chains and query plans. Keep transactions short and lock rows in a stable order. A deadlock victim must retry the entire transaction with bounded backoff. Raising lock timeouts hides contention and increases tail latency.",
+      "source": "local://runbooks/lock"
+    },
+    {
+      "id": "index",
+      "title": "Index rollout and query plans",
+      "body": "A secondary database index can improve selective lookups but increases write amplification and storage. Compare query plans before and after an index. Build indexes using the database online mechanism where supported. Monitor write latency during construction. Remove unused indexes only after observing a representative workload.",
+      "source": "local://runbooks/index"
+    },
+    {
+      "id": "watermark",
+      "title": "Event time and late records",
+      "body": "A watermark estimates completeness of event time, not wall clock time. A five second tumbling window closes when its watermark passes the window end. Bounded out of order tolerance delays completion. Idle source partitions can stall the minimum watermark unless idleness is configured. Route records arriving after closure to a late event channel.",
+      "source": "local://runbooks/watermark"
+    },
+    {
+      "id": "checkpoint",
+      "title": "Checkpoint recovery",
+      "body": "A stream checkpoint captures operator state and source offsets consistently. External sinks need compatible transactional or idempotent semantics for stronger delivery guarantees. A completed checkpoint alone does not establish end to end exactly once across independent sinks. Restore from a compatible checkpoint or savepoint and preserve stable operator identifiers.",
+      "source": "local://runbooks/checkpoint"
+    },
+    {
+      "id": "dedup",
+      "title": "Idempotent request handling",
+      "body": "A client may time out after the server has committed a write. Retrying without an idempotency key can duplicate the operation. Store the key, request fingerprint, and result atomically with the side effect. Reject key reuse with a different request. Define an expiration policy that covers the expected retry horizon.",
+      "source": "local://runbooks/dedup"
+    },
+    {
+      "id": "deploy",
+      "title": "Canary deployment rollback",
+      "body": "Route a small fraction of traffic to a new revision and compare error rate and latency with the control. Use service level indicators and a minimum sample size. Roll back automatically when the error budget burn exceeds the rollout threshold. A successful health probe does not prove a canary behaves correctly under real traffic.",
+      "source": "local://runbooks/deploy"
+    },
+    {
+      "id": "slo",
+      "title": "Error budget burn alerts",
+      "body": "An error budget is the permitted fraction of failed requests over an SLO window. A burn rate compares observed failure rate to the allowed rate. Combine short and long observation windows to detect urgent incidents without paging on isolated spikes. Track availability and latency separately. Alert on user impact rather than CPU utilization alone.",
+      "source": "local://runbooks/slo"
+    },
+    {
+      "id": "shard",
+      "title": "Hot shard diagnosis",
+      "body": "A hot shard receives a disproportionate share of keys or traffic. Inspect per shard request counts, storage, and latency before adding machines. Hash partitioning spreads keys but sacrifices locality. Salting a popular key can distribute load but requires aggregation at read time. Range partitioning can preserve locality while concentrating sequential writes.",
+      "source": "local://runbooks/shard"
+    },
+    {
+      "id": "memory",
+      "title": "Memory pressure and overload",
+      "body": "When resident memory rises, inspect heap growth, cache size, and queued requests. Bounded queues and admission control prevent unlimited buffering during slow downstream calls. Reject overload early with a retryable status. Increasing timeout lengths can increase in flight memory. Profile allocations before assuming a leak.",
+      "source": "local://runbooks/memory"
+    },
+    {
+      "id": "dns",
+      "title": "DNS failures in service discovery",
+      "body": "Service discovery depends on resolver availability, TTL behavior, and container address changes. Inspect DNS responses from the affected workload. Reuse connections with bounded lifetimes and configure resolver refresh for dynamic endpoints. A hostname cached forever can point to a removed replica after a rollout.",
+      "source": "local://runbooks/dns"
+    },
+    {
+      "id": "tls",
+      "title": "TLS certificate rotation",
+      "body": "Rotate certificates before expiration and validate the complete chain and hostname. Deploy overlapping trust during root changes. Monitor handshake failures and certificate expiry from clients. Do not disable verification to conceal a rotation failure. A certificate can be valid by date and still fail hostname validation.",
+      "source": "local://runbooks/tls"
+    },
+    {
+      "id": "rebuild",
+      "title": "Atomic retrieval index publication",
+      "body": "Build a new retrieval index in the background while serving queries from the old immutable snapshot. Publish the new version only after validation and durable metadata commit. Each query must capture one snapshot so ranks and text refer to the same version. If the build fails, keep the last known good index available.",
+      "source": "local://runbooks/rebuild"
+    },
+    {
+      "id": "rrf",
+      "title": "Hybrid retrieval rank fusion",
+      "body": "Keyword retrieval handles exact service names and error codes. Dense vector retrieval can capture latent relationships but may miss rare identifiers. Reciprocal rank fusion combines ranked lists using the reciprocal of a constant plus rank. It avoids directly comparing incompatible raw scoring scales. Tune retrieval on labeled queries rather than assuming hybrid is always better.",
+      "source": "local://runbooks/rrf"
+    },
+    {
+      "id": "grounding",
+      "title": "Evidence and answer grounding",
+      "body": "Retrieve evidence before asking a language model for an answer. Attach stable citation identifiers to passages. Treat retrieved text as untrusted data rather than instructions. Validate that returned citation IDs exist in the retrieved set. Citation validity alone does not prove that the evidence entails every generated claim. Abstain when evidence is insufficient.",
+      "source": "local://runbooks/grounding"
+    },
+    {
+      "id": "isolation",
+      "title": "Tenant isolation in retrieval",
+      "body": "Derive tenant identity from a server validated credential rather than a request body field. Apply tenant constraints before selecting document results. Scope caches by tenant, index version, query, and retrieval settings. Test identical document identifiers in different tenants and cross tenant job polling. A shared cache key can leak another team\u2019s results.",
+      "source": "local://runbooks/isolation"
+    },
+    {
+      "id": "embedding",
+      "title": "Embedding model migration",
+      "body": "Changing an embedding model can change vector dimension and similarity behavior. Build a new version from the same source documents and compare retrieval quality on held out queries. Never mix vectors from different spaces in one cosine index. Keep the previous model snapshot available for rollback. Measure cold build cost as well as query latency.",
+      "source": "local://runbooks/embedding"
+    },
+    {
+      "id": "tail",
+      "title": "Tail latency investigation",
+      "body": "A service can have a healthy mean response time while its ninety fifth or ninety ninth percentile is poor. Break down latency by queueing, network, dependency calls, and computation. Use representative concurrent workloads and record errors alongside percentiles. Cache warm benchmarks cannot substitute for cold query measurements.",
+      "source": "local://runbooks/tail"
+    },
+    {
+      "id": "backpressure",
+      "title": "Backpressure and bounded ingestion",
+      "body": "A producer can outrun downstream processing. Bound the ingestion queue and reject excess work with a retryable response instead of allowing unbounded memory growth. Track oldest queued job age and processing throughput. Adding workers can overload a shared database. Queue depth alone does not reveal how long a request will wait.",
+      "source": "local://runbooks/backpressure"
+    },
+    {
+      "id": "backup",
+      "title": "Database backup restore drills",
+      "body": "A backup is useful only if it can be restored. Run periodic restore drills into an isolated environment and verify row counts and application invariants. Record recovery point and recovery time objectives. Retain encryption keys and version compatible tooling. A successful upload of a backup file does not prove recovery works.",
+      "source": "local://runbooks/backup"
+    },
+    {
+      "id": "quota",
+      "title": "Rate limits and fairness",
+      "body": "Per tenant token buckets allow short bursts while enforcing a sustained request rate. Bounded global concurrency protects shared resources. Reject excess requests with a clear retry signal. In a multi replica deployment process local counters do not create a cluster wide rate limit; use shared coordination or allocate per replica budgets.",
+      "source": "local://runbooks/quota"
+    }
+  ],
+  "payments": [
+    {
+      "id": "pool",
+      "title": "Payment ledger access policy",
+      "body": "The payments team uses a separate ledger retention policy. Ledger settlement records are retained for seven years in this synthetic example. Refund approvals require two reviewers. This document belongs only to the payments team.",
+      "source": "local://payments/policy"
+    },
+    {
+      "id": "refund",
+      "title": "Refund deduplication",
+      "body": "Refund requests must supply a unique refund idempotency key. Store the key and the refund result in the same database transaction. A duplicate key returns the previous result. A key reused with a different amount is rejected.",
+      "source": "local://payments/refunds"
+    }
+  ]
+}

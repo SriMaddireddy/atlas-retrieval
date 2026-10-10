@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "measured_at_utc": "2026-10-10T22:29:43Z",
+  "provider": "local Ollama / qwen2.5:1.5b",
+  "cases": [
+    {
+      "query": "How can search continue while a new index is being built?",
+      "seconds": 4.579,
+      "answer": "Build a new retrieval index in the background while serving queries from the old immutable snapshot. [60989c4b4aa290a5]\n\nPublish the new version only after validation and durable metadata commit. [60989c4b4aa290a5]\n\nEach query must capture one snapshot so ranks and text refer to the same version. [60989c4b4aa290a5]",
+      "citations": [
+        {
+          "id": "60989c4b4aa290a5",
+          "title": "Atomic retrieval index publication",
+          "source": "local://runbooks/rebuild"
+        }
+      ]
+    },
+    {
+      "query": "Why use reciprocal rank fusion instead of adding BM25 and cosine scores?",
+      "seconds": 5.493,
+      "answer": "Keyword retrieval handles exact service names and error codes. [dd30a1eaa2e89e3f]\n\nDense vector retrieval can capture latent relationships but may miss rare identifiers. [dd30a1eaa2e89e3f]\n\nReciprocal rank fusion combines ranked lists using the reciprocal of a constant plus rank. [dd30a1eaa2e89e3f]",
+      "citations": [
+        {
+          "id": "dd30a1eaa2e89e3f",
+          "title": "Hybrid retrieval rank fusion",
+          "source": "local://runbooks/rrf"
+        }
+      ]
+    },
+    {
+      "query": "How do we avoid duplicate writes after a client timeout?",
+      "seconds": 9.297,
+      "answer": "Store the key, request fingerprint, and result atomically with the side effect. [fab7f88a1a01275a]\n\nReject key reuse with a different request. [fab7f88a1a01275a]\n\nDefine an expiration policy that covers the expected retry horizon. [fab7f88a1a01275a]",
+      "citations": [
+        {
+          "id": "fab7f88a1a01275a",
+          "title": "Idempotent request handling",
+          "source": "local://runbooks/dedup"
+        }
+      ]
+    }
+  ],
+  "scope": "Three live local generation checks with valid retrieved citation IDs. This is not a factuality, safety, or prompt-injection robustness benchmark."
+}

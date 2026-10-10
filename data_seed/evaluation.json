@@ -1,0 +1,266 @@
+[
+  {
+    "query": "What should we do when database connection acquisition times out?",
+    "relevant_document_ids": [
+      "pool"
+    ],
+    "tenant": "platform"
+  },
+  {
+    "query": "Why does adding consumers sometimes fail to reduce Kafka lag?",
+    "relevant_document_ids": [
+      "lag"
+    ],
+    "tenant": "platform"
+  },
+  {
+    "query": "How long can configuration stay stale if cache invalidation fails?",
+    "relevant_document_ids": [
+      "cache"
+    ],
+    "tenant": "platform"
+  },
+  {
+    "query": "How can a service stop retries from amplifying an outage?",
+    "relevant_document_ids": [
+      "retry"
+    ],
+    "tenant": "platform"
+  },
+  {
+    "query": "How should deadlock victims retry a transaction?",
+    "relevant_document_ids": [
+      "lock"
+    ],
+    "tenant": "platform"
+  },
+  {
+    "query": "What tradeoffs should we check before adding a database index?",
+    "relevant_document_ids": [
+      "index"
+    ],
+    "tenant": "platform"
+  },
+  {
+    "query": "Why can idle partitions stop event-time windows from closing?",
+    "relevant_document_ids": [
+      "watermark"
+    ],
+    "tenant": "platform"
+  },
+  {
+    "query": "Does a completed checkpoint guarantee exactly-once writes to all sinks?",
+    "relevant_document_ids": [
+      "checkpoint"
+    ],
+    "tenant": "platform"
+  },
+  {
+    "query": "How do we avoid duplicate writes after a client timeout?",
+    "relevant_document_ids": [
+      "dedup"
+    ],
+    "tenant": "platform"
+  },
+  {
+    "query": "Which signals should trigger rollback of a canary deployment?",
+    "relevant_document_ids": [
+      "deploy"
+    ],
+    "tenant": "platform"
+  },
+  {
+    "query": "How do multi-window error-budget alerts reduce noisy pages?",
+    "relevant_document_ids": [
+      "slo"
+    ],
+    "tenant": "platform"
+  },
+  {
+    "query": "What are the costs of salting a hot partition key?",
+    "relevant_document_ids": [
+      "shard"
+    ],
+    "tenant": "platform"
+  },
+  {
+    "query": "Why can longer timeouts worsen memory pressure during overload?",
+    "relevant_document_ids": [
+      "memory"
+    ],
+    "tenant": "platform"
+  },
+  {
+    "query": "Why does a service keep calling a removed container after rollout?",
+    "relevant_document_ids": [
+      "dns"
+    ],
+    "tenant": "platform"
+  },
+  {
+    "query": "What should we verify when TLS handshakes fail after certificate rotation?",
+    "relevant_document_ids": [
+      "tls"
+    ],
+    "tenant": "platform"
+  },
+  {
+    "query": "How can search continue while a new index is being built?",
+    "relevant_document_ids": [
+      "rebuild"
+    ],
+    "tenant": "platform"
+  },
+  {
+    "query": "Why use reciprocal rank fusion instead of adding BM25 and cosine scores?",
+    "relevant_document_ids": [
+      "rrf"
+    ],
+    "tenant": "platform"
+  },
+  {
+    "query": "Does checking citation IDs prove a generated answer is factually supported?",
+    "relevant_document_ids": [
+      "grounding"
+    ],
+    "tenant": "platform"
+  },
+  {
+    "query": "Which fields belong in a multi-tenant search cache key?",
+    "relevant_document_ids": [
+      "isolation"
+    ],
+    "tenant": "platform"
+  },
+  {
+    "query": "What should we compare before migrating an embedding model?",
+    "relevant_document_ids": [
+      "embedding"
+    ],
+    "tenant": "platform"
+  },
+  {
+    "query": "Why is average response time insufficient for a latency benchmark?",
+    "relevant_document_ids": [
+      "tail"
+    ],
+    "tenant": "platform"
+  },
+  {
+    "query": "How should an indexing API behave when its work queue is full?",
+    "relevant_document_ids": [
+      "backpressure"
+    ],
+    "tenant": "platform"
+  },
+  {
+    "query": "What proves that a database backup is usable?",
+    "relevant_document_ids": [
+      "backup"
+    ],
+    "tenant": "platform"
+  },
+  {
+    "query": "Are process-local rate limits global across service replicas?",
+    "relevant_document_ids": [
+      "quota"
+    ],
+    "tenant": "platform"
+  },
+  {
+    "query": "Can readers keep using yesterday\u2019s search data during a background refresh?",
+    "relevant_document_ids": [
+      "rebuild"
+    ],
+    "tenant": "platform",
+    "difficulty": "paraphrase"
+  },
+  {
+    "query": "A network disconnect hid the result of a committed operation. How do I safely send it again?",
+    "relevant_document_ids": [
+      "dedup"
+    ],
+    "tenant": "platform",
+    "difficulty": "paraphrase"
+  },
+  {
+    "query": "The input is quiet but the event-time result never appears. What is blocking completeness?",
+    "relevant_document_ids": [
+      "watermark"
+    ],
+    "tenant": "platform",
+    "difficulty": "paraphrase"
+  },
+  {
+    "query": "Requests wait for a database session even though CPU is low. What should I inspect?",
+    "relevant_document_ids": [
+      "pool"
+    ],
+    "tenant": "platform",
+    "difficulty": "paraphrase"
+  },
+  {
+    "query": "One slice of the data gets nearly all traffic while other machines sit idle.",
+    "relevant_document_ids": [
+      "shard"
+    ],
+    "tenant": "platform",
+    "difficulty": "paraphrase"
+  },
+  {
+    "query": "The model references a real passage. Does that mean its explanation must be correct?",
+    "relevant_document_ids": [
+      "grounding"
+    ],
+    "tenant": "platform",
+    "difficulty": "paraphrase"
+  },
+  {
+    "query": "Two customers send identical queries. How do I stop response reuse across customers?",
+    "relevant_document_ids": [
+      "isolation"
+    ],
+    "tenant": "platform",
+    "difficulty": "paraphrase"
+  },
+  {
+    "query": "The mean looks fine but a few users wait much longer than everyone else.",
+    "relevant_document_ids": [
+      "tail"
+    ],
+    "tenant": "platform",
+    "difficulty": "paraphrase"
+  },
+  {
+    "query": "We uploaded the archive successfully. How do we know we can recover the service?",
+    "relevant_document_ids": [
+      "backup"
+    ],
+    "tenant": "platform",
+    "difficulty": "paraphrase"
+  },
+  {
+    "query": "Can two different vector representation spaces share the same similarity index?",
+    "relevant_document_ids": [
+      "embedding"
+    ],
+    "tenant": "platform",
+    "difficulty": "paraphrase"
+  },
+  {
+    "query": "If I add a second process does the existing traffic budget still apply globally?",
+    "relevant_document_ids": [
+      "quota"
+    ],
+    "tenant": "platform",
+    "difficulty": "paraphrase"
+  },
+  {
+    "query": "The upstream is slow and outstanding requests keep accumulating. What protects RAM?",
+    "relevant_document_ids": [
+      "memory"
+    ],
+    "tenant": "platform",
+    "difficulty": "paraphrase"
+  }
+]

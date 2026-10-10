@@ -1,0 +1,50 @@
+{
+  "measured_at_utc": "2026-10-10T22:22:17Z",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "index": {
+    "documents": 474,
+    "jobs": {
+      "complete": 9
+    },
+    "version": 10,
+    "chunks": 474,
+    "dimensions": 48,
+    "vector_bytes": 597536,
+    "metrics": {
+      "cache_misses": 636,
+      "searches": 1236,
+      "cache_hits": 600
+    },
+    "cache_entries": 36,
+    "server_search_p95_ms": 16.924,
+    "generator_ready": false,
+    "read_only": false,
+    "embedding": "corpus-trained TF-IDF + randomized LSA (48 dimensions maximum)"
+  },
+  "queued_rebuild_seconds": 0.289,
+  "uncached": {
+    "queries": 600,
+    "workers": 8,
+    "cache_enabled": false,
+    "seconds": 0.9569,
+    "queries_per_second": 627.03,
+    "p50_ms": 12.374,
+    "p95_ms": 18.661,
+    "p99_ms": 22.453,
+    "empty_results": 0,
+    "cache_hits": 0
+  },
+  "warm_cache": {
+    "queries": 600,
+    "workers": 8,
+    "cache_enabled": true,
+    "seconds": 0.0256,
+    "queries_per_second": 23459.15,
+    "p50_ms": 0.032,
+    "p95_ms": 0.587,
+    "p99_ms": 2.932,
+    "empty_results": 0,
+    "cache_hits": 600
+  },
+  "scope": "In-process exact hybrid retrieval; excludes HTTP, authentication, rate limits, and local LLM generation. Synthetic replicated runbooks; not production traffic. Warm-cache results are explicitly separate."
+}

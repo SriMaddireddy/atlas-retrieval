@@ -1,0 +1,17 @@
+services:
+  atlas:
+    build: .
+    ports: ["127.0.0.1:8092:8092"]
+    environment:
+      # Demo credentials for synthetic data. Supply your own before sharing.
+      ATLAS_KEYS: '{"atlas-demo-platform":"platform","atlas-demo-payments":"payments"}'
+      OLLAMA_URL: ${OLLAMA_URL:-}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-qwen2.5:1.5b}
+    volumes: ["atlas-data:/app/data"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8092/healthz')"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+volumes:
+  atlas-data:

@@ -1,0 +1,1641 @@
+{
+  "measured_at_utc": "2026-10-10T22:22:16Z",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "query_count": 36,
+  "corpus": "24 original synthetic platform runbooks",
+  "method": "Queries are excluded from index training. Corpus and labels were authored together; this is a regression set, not an independent benchmark.",
+  "modes": {
+    "lexical": {
+      "mrr_at_5": 0.9583,
+      "recall_at_5": 1.0,
+      "queries": [
+        {
+          "query": "What should we do when database connection acquisition times out?",
+          "expected": [
+            "pool"
+          ],
+          "retrieved": [
+            "pool",
+            "watermark",
+            "dedup",
+            "dns",
+            "backup"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Why does adding consumers sometimes fail to reduce Kafka lag?",
+          "expected": [
+            "lag"
+          ],
+          "retrieved": [
+            "lag",
+            "pool",
+            "shard",
+            "backpressure",
+            "tls"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "How long can configuration stay stale if cache invalidation fails?",
+          "expected": [
+            "cache"
+          ],
+          "retrieved": [
+            "cache",
+            "rebuild",
+            "dns",
+            "slo",
+            "backup"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "How can a service stop retries from amplifying an outage?",
+          "expected": [
+            "retry"
+          ],
+          "retrieved": [
+            "retry",
+            "dns",
+            "dedup",
+            "tail",
+            "quota"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "How should deadlock victims retry a transaction?",
+          "expected": [
+            "lock"
+          ],
+          "retrieved": [
+            "lock",
+            "retry",
+            "dedup",
+            "pool",
+            "checkpoint"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "What tradeoffs should we check before adding a database index?",
+          "expected": [
+            "index"
+          ],
+          "retrieved": [
+            "index",
+            "lag",
+            "backpressure",
+            "rebuild",
+            "shard"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Why can idle partitions stop event-time windows from closing?",
+          "expected": [
+            "watermark"
+          ],
+          "retrieved": [
+            "watermark",
+            "shard",
+            "lag",
+            "slo",
+            "cache"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Does a completed checkpoint guarantee exactly-once writes to all sinks?",
+          "expected": [
+            "checkpoint"
+          ],
+          "retrieved": [
+            "checkpoint",
+            "watermark",
+            "index",
+            "lag",
+            "tls"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "How do we avoid duplicate writes after a client timeout?",
+          "expected": [
+            "dedup"
+          ],
+          "retrieved": [
+            "dedup",
+            "index",
+            "rrf",
+            "retry",
+            "pool"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Which signals should trigger rollback of a canary deployment?",
+          "expected": [
+            "deploy"
+          ],
+          "retrieved": [
+            "deploy",
+            "quota",
+            "embedding"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "How do multi-window error-budget alerts reduce noisy pages?",
+          "expected": [
+            "slo"
+          ],
+          "retrieved": [
+            "slo",
+            "quota",
+            "deploy",
+            "watermark",
+            "pool"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "What are the costs of salting a hot partition key?",
+          "expected": [
+            "shard"
+          ],
+          "retrieved": [
+            "shard",
+            "lag",
+            "embedding",
+            "watermark",
+            "dedup"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Why can longer timeouts worsen memory pressure during overload?",
+          "expected": [
+            "memory"
+          ],
+          "retrieved": [
+            "memory",
+            "backpressure",
+            "lock",
+            "pool",
+            "tls"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Why does a service keep calling a removed container after rollout?",
+          "expected": [
+            "dns"
+          ],
+          "retrieved": [
+            "dns",
+            "index",
+            "tail",
+            "retry",
+            "deploy"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "What should we verify when TLS handshakes fail after certificate rotation?",
+          "expected": [
+            "tls"
+          ],
+          "retrieved": [
+            "tls",
+            "backup",
+            "cache",
+            "rebuild",
+            "slo"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "How can search continue while a new index is being built?",
+          "expected": [
+            "rebuild"
+          ],
+          "retrieved": [
+            "rebuild",
+            "embedding",
+            "index",
+            "tls",
+            "backup"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Why use reciprocal rank fusion instead of adding BM25 and cosine scores?",
+          "expected": [
+            "rrf"
+          ],
+          "retrieved": [
+            "rrf",
+            "backpressure",
+            "embedding",
+            "rebuild",
+            "shard"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Does checking citation IDs prove a generated answer is factually supported?",
+          "expected": [
+            "grounding"
+          ],
+          "retrieved": [
+            "grounding",
+            "index",
+            "lag",
+            "backup",
+            "deploy"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Which fields belong in a multi-tenant search cache key?",
+          "expected": [
+            "isolation"
+          ],
+          "retrieved": [
+            "isolation",
+            "quota",
+            "cache",
+            "memory",
+            "dns"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "What should we compare before migrating an embedding model?",
+          "expected": [
+            "embedding"
+          ],
+          "retrieved": [
+            "embedding",
+            "grounding",
+            "index",
+            "deploy",
+            "slo"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Why is average response time insufficient for a latency benchmark?",
+          "expected": [
+            "tail"
+          ],
+          "retrieved": [
+            "tail",
+            "grounding",
+            "dns",
+            "backpressure",
+            "shard"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "How should an indexing API behave when its work queue is full?",
+          "expected": [
+            "backpressure"
+          ],
+          "retrieved": [
+            "backpressure",
+            "backup",
+            "index",
+            "tail",
+            "deploy"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "What proves that a database backup is usable?",
+          "expected": [
+            "backup"
+          ],
+          "retrieved": [
+            "backup",
+            "grounding",
+            "deploy",
+            "index",
+            "lock"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Are process-local rate limits global across service replicas?",
+          "expected": [
+            "quota"
+          ],
+          "retrieved": [
+            "quota",
+            "dns",
+            "deploy",
+            "shard",
+            "slo"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Can readers keep using yesterday\u2019s search data during a background refresh?",
+          "expected": [
+            "rebuild"
+          ],
+          "retrieved": [
+            "rebuild",
+            "dns",
+            "grounding",
+            "cache",
+            "index"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "A network disconnect hid the result of a committed operation. How do I safely send it again?",
+          "expected": [
+            "dedup"
+          ],
+          "retrieved": [
+            "dedup",
+            "checkpoint",
+            "tail",
+            "isolation",
+            "rebuild"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "The input is quiet but the event-time result never appears. What is blocking completeness?",
+          "expected": [
+            "watermark"
+          ],
+          "retrieved": [
+            "watermark",
+            "cache",
+            "lock",
+            "shard",
+            "dedup"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Requests wait for a database session even though CPU is low. What should I inspect?",
+          "expected": [
+            "pool"
+          ],
+          "retrieved": [
+            "pool",
+            "lock",
+            "backpressure",
+            "slo",
+            "memory"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "One slice of the data gets nearly all traffic while other machines sit idle.",
+          "expected": [
+            "shard"
+          ],
+          "retrieved": [
+            "shard",
+            "deploy",
+            "watermark",
+            "grounding",
+            "rebuild"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "The model references a real passage. Does that mean its explanation must be correct?",
+          "expected": [
+            "grounding"
+          ],
+          "retrieved": [
+            "grounding",
+            "rebuild",
+            "tail",
+            "embedding",
+            "deploy"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Two customers send identical queries. How do I stop response reuse across customers?",
+          "expected": [
+            "isolation"
+          ],
+          "retrieved": [
+            "isolation",
+            "dns",
+            "tail",
+            "checkpoint",
+            "dedup"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "The mean looks fine but a few users wait much longer than everyone else.",
+          "expected": [
+            "tail"
+          ],
+          "retrieved": [
+            "slo",
+            "tail",
+            "rrf",
+            "shard",
+            "backpressure"
+          ],
+          "reciprocal_rank": 0.5,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "We uploaded the archive successfully. How do we know we can recover the service?",
+          "expected": [
+            "backup"
+          ],
+          "retrieved": [
+            "retry",
+            "backup",
+            "dns",
+            "tail",
+            "deploy"
+          ],
+          "reciprocal_rank": 0.5,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Can two different vector representation spaces share the same similarity index?",
+          "expected": [
+            "embedding"
+          ],
+          "retrieved": [
+            "embedding",
+            "isolation",
+            "rebuild",
+            "index",
+            "quota"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "If I add a second process does the existing traffic budget still apply globally?",
+          "expected": [
+            "quota"
+          ],
+          "retrieved": [
+            "quota",
+            "deploy",
+            "tls",
+            "isolation",
+            "grounding"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "The upstream is slow and outstanding requests keep accumulating. What protects RAM?",
+          "expected": [
+            "memory"
+          ],
+          "retrieved": [
+            "quota",
+            "memory",
+            "pool",
+            "lock",
+            "rebuild"
+          ],
+          "reciprocal_rank": 0.5,
+          "recall_at_5": 1.0
+        }
+      ]
+    },
+    "dense": {
+      "mrr_at_5": 0.9097,
+      "recall_at_5": 0.9444,
+      "queries": [
+        {
+          "query": "What should we do when database connection acquisition times out?",
+          "expected": [
+            "pool"
+          ],
+          "retrieved": [
+            "pool",
+            "dedup",
+            "index",
+            "watermark",
+            "cache"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Why does adding consumers sometimes fail to reduce Kafka lag?",
+          "expected": [
+            "lag"
+          ],
+          "retrieved": [
+            "lag",
+            "tls",
+            "pool",
+            "backpressure",
+            "shard"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "How long can configuration stay stale if cache invalidation fails?",
+          "expected": [
+            "cache"
+          ],
+          "retrieved": [
+            "cache",
+            "rebuild",
+            "backup",
+            "memory",
+            "tail"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "How can a service stop retries from amplifying an outage?",
+          "expected": [
+            "retry"
+          ],
+          "retrieved": [
+            "retry",
+            "dns",
+            "deploy",
+            "tail",
+            "rrf"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "How should deadlock victims retry a transaction?",
+          "expected": [
+            "lock"
+          ],
+          "retrieved": [
+            "lock",
+            "retry",
+            "pool",
+            "dedup",
+            "quota"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "What tradeoffs should we check before adding a database index?",
+          "expected": [
+            "index"
+          ],
+          "retrieved": [
+            "index",
+            "lag",
+            "rebuild",
+            "backpressure",
+            "cache"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Why can idle partitions stop event-time windows from closing?",
+          "expected": [
+            "watermark"
+          ],
+          "retrieved": [
+            "watermark",
+            "lag",
+            "pool",
+            "slo",
+            "dedup"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Does a completed checkpoint guarantee exactly-once writes to all sinks?",
+          "expected": [
+            "checkpoint"
+          ],
+          "retrieved": [
+            "checkpoint",
+            "shard",
+            "lag",
+            "embedding"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "How do we avoid duplicate writes after a client timeout?",
+          "expected": [
+            "dedup"
+          ],
+          "retrieved": [
+            "dedup",
+            "retry",
+            "memory",
+            "shard",
+            "index"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Which signals should trigger rollback of a canary deployment?",
+          "expected": [
+            "deploy"
+          ],
+          "retrieved": [
+            "deploy",
+            "embedding",
+            "quota",
+            "rebuild"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "How do multi-window error-budget alerts reduce noisy pages?",
+          "expected": [
+            "slo"
+          ],
+          "retrieved": [
+            "slo",
+            "deploy",
+            "watermark",
+            "quota",
+            "pool"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "What are the costs of salting a hot partition key?",
+          "expected": [
+            "shard"
+          ],
+          "retrieved": [
+            "shard",
+            "lag",
+            "dedup",
+            "isolation"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Why can longer timeouts worsen memory pressure during overload?",
+          "expected": [
+            "memory"
+          ],
+          "retrieved": [
+            "memory",
+            "backpressure",
+            "lock",
+            "pool",
+            "index"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Why does a service keep calling a removed container after rollout?",
+          "expected": [
+            "dns"
+          ],
+          "retrieved": [
+            "dns",
+            "index",
+            "deploy",
+            "embedding",
+            "pool"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "What should we verify when TLS handshakes fail after certificate rotation?",
+          "expected": [
+            "tls"
+          ],
+          "retrieved": [
+            "tls",
+            "backup",
+            "rebuild",
+            "index",
+            "dedup"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "How can search continue while a new index is being built?",
+          "expected": [
+            "rebuild"
+          ],
+          "retrieved": [
+            "rebuild",
+            "embedding",
+            "index",
+            "retry",
+            "isolation"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Why use reciprocal rank fusion instead of adding BM25 and cosine scores?",
+          "expected": [
+            "rrf"
+          ],
+          "retrieved": [
+            "rrf",
+            "backpressure",
+            "rebuild",
+            "shard",
+            "deploy"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Does checking citation IDs prove a generated answer is factually supported?",
+          "expected": [
+            "grounding"
+          ],
+          "retrieved": [
+            "grounding",
+            "index",
+            "backup",
+            "deploy"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Which fields belong in a multi-tenant search cache key?",
+          "expected": [
+            "isolation"
+          ],
+          "retrieved": [
+            "isolation",
+            "quota",
+            "dedup",
+            "cache",
+            "memory"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "What should we compare before migrating an embedding model?",
+          "expected": [
+            "embedding"
+          ],
+          "retrieved": [
+            "embedding",
+            "rebuild",
+            "grounding",
+            "deploy",
+            "index"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Why is average response time insufficient for a latency benchmark?",
+          "expected": [
+            "tail"
+          ],
+          "retrieved": [
+            "tail",
+            "grounding",
+            "backpressure",
+            "watermark",
+            "lock"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "How should an indexing API behave when its work queue is full?",
+          "expected": [
+            "backpressure"
+          ],
+          "retrieved": [
+            "backpressure",
+            "tail",
+            "cache",
+            "watermark",
+            "pool"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "What proves that a database backup is usable?",
+          "expected": [
+            "backup"
+          ],
+          "retrieved": [
+            "backup",
+            "index",
+            "pool",
+            "cache",
+            "backpressure"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Are process-local rate limits global across service replicas?",
+          "expected": [
+            "quota"
+          ],
+          "retrieved": [
+            "quota",
+            "slo",
+            "deploy",
+            "dns",
+            "checkpoint"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Can readers keep using yesterday\u2019s search data during a background refresh?",
+          "expected": [
+            "rebuild"
+          ],
+          "retrieved": [
+            "index",
+            "rebuild",
+            "embedding",
+            "dns",
+            "grounding"
+          ],
+          "reciprocal_rank": 0.5,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "A network disconnect hid the result of a committed operation. How do I safely send it again?",
+          "expected": [
+            "dedup"
+          ],
+          "retrieved": [
+            "dedup",
+            "tail",
+            "lag",
+            "embedding"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "The input is quiet but the event-time result never appears. What is blocking completeness?",
+          "expected": [
+            "watermark"
+          ],
+          "retrieved": [
+            "watermark",
+            "dedup",
+            "lock",
+            "shard",
+            "cache"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Requests wait for a database session even though CPU is low. What should I inspect?",
+          "expected": [
+            "pool"
+          ],
+          "retrieved": [
+            "pool",
+            "slo",
+            "lock",
+            "memory",
+            "backpressure"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "One slice of the data gets nearly all traffic while other machines sit idle.",
+          "expected": [
+            "shard"
+          ],
+          "retrieved": [
+            "shard",
+            "deploy",
+            "embedding",
+            "grounding",
+            "rebuild"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "The model references a real passage. Does that mean its explanation must be correct?",
+          "expected": [
+            "grounding"
+          ],
+          "retrieved": [
+            "embedding",
+            "tail",
+            "rebuild",
+            "deploy",
+            "lock"
+          ],
+          "reciprocal_rank": 0,
+          "recall_at_5": 0.0
+        },
+        {
+          "query": "Two customers send identical queries. How do I stop response reuse across customers?",
+          "expected": [
+            "isolation"
+          ],
+          "retrieved": [
+            "isolation",
+            "checkpoint",
+            "embedding",
+            "dedup",
+            "dns"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "The mean looks fine but a few users wait much longer than everyone else.",
+          "expected": [
+            "tail"
+          ],
+          "retrieved": [
+            "tail",
+            "shard",
+            "rrf",
+            "lag",
+            "backpressure"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "We uploaded the archive successfully. How do we know we can recover the service?",
+          "expected": [
+            "backup"
+          ],
+          "retrieved": [
+            "dns",
+            "deploy",
+            "tail",
+            "rrf",
+            "embedding"
+          ],
+          "reciprocal_rank": 0,
+          "recall_at_5": 0.0
+        },
+        {
+          "query": "Can two different vector representation spaces share the same similarity index?",
+          "expected": [
+            "embedding"
+          ],
+          "retrieved": [
+            "embedding",
+            "rebuild",
+            "index",
+            "isolation",
+            "shard"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "If I add a second process does the existing traffic budget still apply globally?",
+          "expected": [
+            "quota"
+          ],
+          "retrieved": [
+            "deploy",
+            "slo",
+            "tls",
+            "quota",
+            "isolation"
+          ],
+          "reciprocal_rank": 0.25,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "The upstream is slow and outstanding requests keep accumulating. What protects RAM?",
+          "expected": [
+            "memory"
+          ],
+          "retrieved": [
+            "memory",
+            "quota",
+            "embedding",
+            "slo",
+            "rebuild"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        }
+      ]
+    },
+    "hybrid": {
+      "mrr_at_5": 0.9375,
+      "recall_at_5": 0.9722,
+      "queries": [
+        {
+          "query": "What should we do when database connection acquisition times out?",
+          "expected": [
+            "pool"
+          ],
+          "retrieved": [
+            "pool",
+            "dedup",
+            "watermark",
+            "index",
+            "cache"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Why does adding consumers sometimes fail to reduce Kafka lag?",
+          "expected": [
+            "lag"
+          ],
+          "retrieved": [
+            "lag",
+            "pool",
+            "tls",
+            "shard",
+            "backpressure"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "How long can configuration stay stale if cache invalidation fails?",
+          "expected": [
+            "cache"
+          ],
+          "retrieved": [
+            "cache",
+            "rebuild",
+            "backup",
+            "slo",
+            "backpressure"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "How can a service stop retries from amplifying an outage?",
+          "expected": [
+            "retry"
+          ],
+          "retrieved": [
+            "retry",
+            "dns",
+            "tail",
+            "deploy",
+            "rrf"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "How should deadlock victims retry a transaction?",
+          "expected": [
+            "lock"
+          ],
+          "retrieved": [
+            "lock",
+            "retry",
+            "pool",
+            "dedup",
+            "quota"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "What tradeoffs should we check before adding a database index?",
+          "expected": [
+            "index"
+          ],
+          "retrieved": [
+            "index",
+            "lag",
+            "rebuild",
+            "backpressure",
+            "shard"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Why can idle partitions stop event-time windows from closing?",
+          "expected": [
+            "watermark"
+          ],
+          "retrieved": [
+            "watermark",
+            "lag",
+            "slo",
+            "pool",
+            "shard"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Does a completed checkpoint guarantee exactly-once writes to all sinks?",
+          "expected": [
+            "checkpoint"
+          ],
+          "retrieved": [
+            "checkpoint",
+            "lag",
+            "shard",
+            "watermark",
+            "index"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "How do we avoid duplicate writes after a client timeout?",
+          "expected": [
+            "dedup"
+          ],
+          "retrieved": [
+            "dedup",
+            "retry",
+            "index",
+            "memory",
+            "cache"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Which signals should trigger rollback of a canary deployment?",
+          "expected": [
+            "deploy"
+          ],
+          "retrieved": [
+            "deploy",
+            "quota",
+            "embedding",
+            "rebuild"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "How do multi-window error-budget alerts reduce noisy pages?",
+          "expected": [
+            "slo"
+          ],
+          "retrieved": [
+            "slo",
+            "deploy",
+            "quota",
+            "watermark",
+            "pool"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "What are the costs of salting a hot partition key?",
+          "expected": [
+            "shard"
+          ],
+          "retrieved": [
+            "shard",
+            "lag",
+            "dedup",
+            "isolation",
+            "embedding"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Why can longer timeouts worsen memory pressure during overload?",
+          "expected": [
+            "memory"
+          ],
+          "retrieved": [
+            "memory",
+            "backpressure",
+            "lock",
+            "pool",
+            "index"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Why does a service keep calling a removed container after rollout?",
+          "expected": [
+            "dns"
+          ],
+          "retrieved": [
+            "dns",
+            "index",
+            "deploy",
+            "tail",
+            "pool"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "What should we verify when TLS handshakes fail after certificate rotation?",
+          "expected": [
+            "tls"
+          ],
+          "retrieved": [
+            "tls",
+            "backup",
+            "rebuild",
+            "index",
+            "dns"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "How can search continue while a new index is being built?",
+          "expected": [
+            "rebuild"
+          ],
+          "retrieved": [
+            "rebuild",
+            "embedding",
+            "index",
+            "isolation",
+            "deploy"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Why use reciprocal rank fusion instead of adding BM25 and cosine scores?",
+          "expected": [
+            "rrf"
+          ],
+          "retrieved": [
+            "rrf",
+            "backpressure",
+            "rebuild",
+            "shard",
+            "embedding"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Does checking citation IDs prove a generated answer is factually supported?",
+          "expected": [
+            "grounding"
+          ],
+          "retrieved": [
+            "grounding",
+            "index",
+            "backup",
+            "deploy",
+            "lag"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Which fields belong in a multi-tenant search cache key?",
+          "expected": [
+            "isolation"
+          ],
+          "retrieved": [
+            "isolation",
+            "quota",
+            "cache",
+            "memory",
+            "dedup"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "What should we compare before migrating an embedding model?",
+          "expected": [
+            "embedding"
+          ],
+          "retrieved": [
+            "embedding",
+            "grounding",
+            "index",
+            "deploy",
+            "memory"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Why is average response time insufficient for a latency benchmark?",
+          "expected": [
+            "tail"
+          ],
+          "retrieved": [
+            "tail",
+            "grounding",
+            "backpressure",
+            "watermark",
+            "shard"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "How should an indexing API behave when its work queue is full?",
+          "expected": [
+            "backpressure"
+          ],
+          "retrieved": [
+            "backpressure",
+            "tail",
+            "pool",
+            "watermark",
+            "cache"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "What proves that a database backup is usable?",
+          "expected": [
+            "backup"
+          ],
+          "retrieved": [
+            "backup",
+            "index",
+            "pool",
+            "cache",
+            "lock"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Are process-local rate limits global across service replicas?",
+          "expected": [
+            "quota"
+          ],
+          "retrieved": [
+            "quota",
+            "dns",
+            "deploy",
+            "slo",
+            "checkpoint"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Can readers keep using yesterday\u2019s search data during a background refresh?",
+          "expected": [
+            "rebuild"
+          ],
+          "retrieved": [
+            "rebuild",
+            "index",
+            "dns",
+            "grounding",
+            "embedding"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "A network disconnect hid the result of a committed operation. How do I safely send it again?",
+          "expected": [
+            "dedup"
+          ],
+          "retrieved": [
+            "dedup",
+            "tail",
+            "lag",
+            "checkpoint",
+            "isolation"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "The input is quiet but the event-time result never appears. What is blocking completeness?",
+          "expected": [
+            "watermark"
+          ],
+          "retrieved": [
+            "watermark",
+            "lock",
+            "cache",
+            "dedup",
+            "shard"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Requests wait for a database session even though CPU is low. What should I inspect?",
+          "expected": [
+            "pool"
+          ],
+          "retrieved": [
+            "pool",
+            "lock",
+            "slo",
+            "backpressure",
+            "memory"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "One slice of the data gets nearly all traffic while other machines sit idle.",
+          "expected": [
+            "shard"
+          ],
+          "retrieved": [
+            "shard",
+            "deploy",
+            "grounding",
+            "watermark",
+            "rebuild"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "The model references a real passage. Does that mean its explanation must be correct?",
+          "expected": [
+            "grounding"
+          ],
+          "retrieved": [
+            "embedding",
+            "tail",
+            "rebuild",
+            "grounding",
+            "deploy"
+          ],
+          "reciprocal_rank": 0.25,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "Two customers send identical queries. How do I stop response reuse across customers?",
+          "expected": [
+            "isolation"
+          ],
+          "retrieved": [
+            "isolation",
+            "checkpoint",
+            "dns",
+            "dedup",
+            "tail"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "The mean looks fine but a few users wait much longer than everyone else.",
+          "expected": [
+            "tail"
+          ],
+          "retrieved": [
+            "tail",
+            "shard",
+            "rrf",
+            "backpressure",
+            "slo"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "We uploaded the archive successfully. How do we know we can recover the service?",
+          "expected": [
+            "backup"
+          ],
+          "retrieved": [
+            "dns",
+            "deploy",
+            "tail",
+            "rrf",
+            "retry"
+          ],
+          "reciprocal_rank": 0,
+          "recall_at_5": 0.0
+        },
+        {
+          "query": "Can two different vector representation spaces share the same similarity index?",
+          "expected": [
+            "embedding"
+          ],
+          "retrieved": [
+            "embedding",
+            "rebuild",
+            "isolation",
+            "index",
+            "shard"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "If I add a second process does the existing traffic budget still apply globally?",
+          "expected": [
+            "quota"
+          ],
+          "retrieved": [
+            "deploy",
+            "quota",
+            "tls",
+            "isolation",
+            "slo"
+          ],
+          "reciprocal_rank": 0.5,
+          "recall_at_5": 1.0
+        },
+        {
+          "query": "The upstream is slow and outstanding requests keep accumulating. What protects RAM?",
+          "expected": [
+            "memory"
+          ],
+          "retrieved": [
+            "memory",
+            "quota",
+            "embedding",
+            "pool",
+            "lock"
+          ],
+          "reciprocal_rank": 1.0,
+          "recall_at_5": 1.0
+        }
+      ]
+    }
+  },
+  "unanswerable_abstained": 3,
+  "unanswerable_queries": 3
+}
