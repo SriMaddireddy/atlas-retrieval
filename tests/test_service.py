@@ -188,6 +188,38 @@ class ServiceTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "already owns"):
             Service(self.path)
 
+    def test_close_timeout_retains_writer_lock_until_worker_exits(self):
+        original = Snapshot.build
+        entered = threading.Event()
+        resume = threading.Event()
+
+        def delayed(*args, **kwargs):
+            entered.set()
+            if not resume.wait(5):
+                raise RuntimeError("Test failed to release index build")
+            return original(*args, **kwargs)
+
+        with patch.object(Snapshot, "build", side_effect=delayed):
+            key = self.s.enqueue("platform", "upsert", [self.doc()])
+            try:
+                self.assertTrue(entered.wait(2))
+                # Simulate expiry of the join deadline without waiting 20 seconds.
+                with patch.object(self.s.thread, "join", return_value=None):
+                    with self.assertRaisesRegex(RuntimeError, "ownership retained"):
+                        self.s.close()
+                self.assertFalse(self.s.process_lock.closed)
+                with self.assertRaisesRegex(RuntimeError, "already owns"):
+                    Service(self.path)
+            finally:
+                resume.set()
+                self.s.close()
+        self.assertEqual(self.s.store.job("platform", key)["status"], "complete")
+        restarted = Service(self.path)
+        try:
+            self.assertEqual(restarted.stats("platform")["version"], 2)
+        finally:
+            restarted.close()
+
     def test_empty_tenant_safe(self):
         self.assertEqual(self.s.search("empty", "query")["results"], [])
 

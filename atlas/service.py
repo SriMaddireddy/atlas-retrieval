@@ -44,6 +44,10 @@ class Service:
     def close(self):
         self.stop.set()
         self.thread.join(timeout=20)
+        if self.thread.is_alive():
+            raise RuntimeError(
+                "Indexer is still stopping; database ownership retained. Retry close."
+            )
         if not self.process_lock.closed:
             fcntl.flock(self.process_lock, fcntl.LOCK_UN)
             self.process_lock.close()
