@@ -1,5 +1,30 @@
 # Technical status
 
+## Transient queue-claim contention
+
+AI-assisted implementation and cloud verification by ChatGPT Work on
+2026-11-05 UTC. This is a catch-up development run with the real current date.
+
+The indexing worker now retries SQLite BUSY/LOCKED claim errors, including
+extended codes, after an interruptible 100 ms delay. Previously a transient
+claim error terminated the worker and left accepted jobs pending. The retry
+does not re-enqueue jobs or change publication semantics.
+
+Evidence from Linux, Python 3.12.14 and NumPy 2.3.5:
+
+- Busy and extended locked error regression cases fail on the parent code
+  (worker termination and pending-job timeout), then pass with the fix.
+- A separate regression verifies unrelated database errors are not retried.
+- All 33 unit/HTTP integration tests pass (1.716 seconds).
+- Live source-server HTTP smoke passes.
+- The 36-query retrieval evaluation retains the recorded baseline metrics;
+  all three unknown queries abstain. No relevance improvement is claimed.
+- Hosted CI for this commit must verify pinned dependencies and Docker.
+
+Limitations: persistent lock contention can delay the queue indefinitely;
+errors after claiming a job retain existing failed-job behavior. This does
+not provide general database repair or distributed-writer support.
+
 ## Writer ownership during shutdown
 
 AI-assisted change by ChatGPT Work, verified in a managed Linux cloud runtime

@@ -149,6 +149,59 @@ class ServiceTests(unittest.TestCase):
         self.s = Service(self.path)
         self.assertEqual(self.wait(key)["status"], "complete")
 
+    def test_worker_recovers_from_transient_claim_locks(self):
+        import sqlite3
+
+        for code in (sqlite3.SQLITE_BUSY, sqlite3.SQLITE_LOCKED_SHAREDCACHE):
+            with self.subTest(sqlite_errorcode=code):
+                self.s.stop.set()
+                self.s.thread.join(5)
+                self.assertFalse(self.s.thread.is_alive())
+                key = self.s.store.enqueue("platform", "upsert", [self.doc()])
+                original = self.s.store.claim
+                error = sqlite3.OperationalError("injected transient lock")
+                error.sqlite_errorcode = code
+                attempts = []
+
+                def claim():
+                    attempts.append(time.monotonic())
+                    if len(attempts) == 1:
+                        raise error
+                    return original()
+
+                self.s.stop.clear()
+                self.s.thread = threading.Thread(target=self.s._worker, daemon=True)
+                with patch.object(self.s.store, "claim", side_effect=claim):
+                    with self.assertLogs(level="WARNING") as logs:
+                        self.s.thread.start()
+                        job = self.wait(key)
+                    self.assertEqual(job["status"], "complete")
+                    self.assertTrue(self.s.thread.is_alive())
+                    self.assertGreaterEqual(len(attempts), 2)
+                    self.assertIn("retrying job claim", logs.output[0])
+                    self.assertEqual(
+                        self.s.search("platform", "chartreuse recovery")["results"][0]["document_id"],
+                        "novel",
+                    )
+                    self.s.stop.set()
+                    self.s.thread.join(5)
+
+    def test_claim_does_not_retry_non_lock_database_errors(self):
+        import sqlite3
+
+        self.s.stop.set()
+        self.s.thread.join(5)
+        self.s.stop.clear()
+        error = sqlite3.OperationalError("injected missing table")
+        error.sqlite_errorcode = sqlite3.SQLITE_ERROR
+        try:
+            with patch.object(self.s.store, "claim", side_effect=error) as claim:
+                with self.assertRaisesRegex(sqlite3.OperationalError, "missing table"):
+                    self.s._worker()
+                self.assertEqual(claim.call_count, 1)
+        finally:
+            self.s.stop.set()
+
     def test_capacity_failure_preserves_version(self):
         docs = [self.doc(id="doc" + str(i)) for i in range(501)]
         key = self.s.enqueue("platform", "upsert", docs)

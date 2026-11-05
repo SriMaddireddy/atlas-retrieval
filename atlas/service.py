@@ -1,4 +1,4 @@
-import collections, copy, json, logging, re, threading, time, urllib.request, urllib.error, fcntl
+import collections, copy, json, logging, re, sqlite3, threading, time, urllib.request, urllib.error, fcntl
 from pathlib import Path
 from .retrieval import Snapshot, chunk_document, fuse, tokens
 from .store import Store
@@ -58,7 +58,16 @@ class Service:
 
     def _worker(self):
         while not self.stop.is_set():
-            job = self.store.claim()
+            try:
+                job = self.store.claim()
+            except sqlite3.OperationalError as error:
+                # Extended result codes retain the primary code in the low byte.
+                code = getattr(error, "sqlite_errorcode", 0) & 0xFF
+                if code not in (sqlite3.SQLITE_BUSY, sqlite3.SQLITE_LOCKED):
+                    raise
+                logging.warning("Index queue is locked; retrying job claim")
+                self.stop.wait(0.1)
+                continue
             if not job:
                 self.stop.wait(0.05)
                 continue

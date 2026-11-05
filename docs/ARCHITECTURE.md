@@ -6,6 +6,13 @@ The worker reads active source documents, applies the queued mutation, chunks te
 
 The queue stores pending/running/complete/failed job state durably. A crash resets running jobs to pending at startup. Upserts replace whole documents by ID and deletes are idempotent. The publication transaction updates source documents, all new chunks, active version, and job completion together. The process lock prevents a second writer from resetting job state. This is explicitly one process per database. Old completed job records are retained; long-running installations need a job retention policy.
 
+Queue claims retry SQLite `BUSY` and `LOCKED` results (including extended result
+codes) after an interruptible 100 ms delay. The transaction rolls back before
+retrying, preserving pending jobs. Other claim errors are not retried. This
+handles transient claim contention only; failures after a job is claimed still
+mark that job failed. Persistent locks can delay progress indefinitely, so this
+is not a maximum-latency guarantee or automatic repair for a broken database.
+
 ## Two retrieval baselines
 
 FTS5 uses Porter tokenization and BM25. The vector branch uses log TF, smoothed IDF, row normalization, a deterministic randomized SVD (seed 17, two power iterations), and up to 48 dimensions. Training uses only index text; evaluation questions are not training input. Query vectors use the same vocabulary, IDF, and projection. Out-of-vocabulary queries can produce no dense evidence. The model is a corpus-trained statistical baseline; it has no pretrained knowledge or multilingual guarantees.
