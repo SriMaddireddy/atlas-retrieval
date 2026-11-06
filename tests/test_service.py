@@ -281,6 +281,22 @@ class ServiceTests(unittest.TestCase):
         with self.assertRaises(PermissionError):
             self.s.enqueue("platform", "delete", ["lag"])
 
+    def test_closed_service_rejects_jobs_without_persisting_them(self):
+        self.s.close()
+        before = self.s.store.stats("platform")["jobs"]
+        with self.assertRaisesRegex(RuntimeError, "no job accepted"):
+            self.s.enqueue("platform", "upsert", [self.doc()])
+        self.assertEqual(self.s.store.stats("platform")["jobs"], before)
+
+    def test_dead_worker_rejects_jobs_even_without_stop_signal(self):
+        self.s.stop.set()
+        self.s.thread.join(5)
+        self.s.stop.clear()
+        before = self.s.store.stats("platform")["jobs"]
+        with self.assertRaisesRegex(RuntimeError, "unavailable"):
+            self.s.enqueue("platform", "delete", ["lag"])
+        self.assertEqual(self.s.store.stats("platform")["jobs"], before)
+
     def test_sql_metacharacters_are_data(self):
         self.assertIsInstance(
             self.s.search("platform", '" OR 1=1; DROP TABLE documents; --')["results"],

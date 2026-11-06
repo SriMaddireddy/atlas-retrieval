@@ -42,7 +42,8 @@ class Service:
         self.thread.start()
 
     def close(self):
-        self.stop.set()
+        with self.lock:
+            self.stop.set()
         self.thread.join(timeout=20)
         if self.thread.is_alive():
             raise RuntimeError(
@@ -106,7 +107,10 @@ class Service:
     def enqueue(self, tenant, kind, payload):
         if self.readonly:
             raise PermissionError("This deployment is a read-only demo")
-        return self.store.enqueue(tenant, kind, payload)
+        with self.lock:
+            if self.stop.is_set() or not self.thread.is_alive():
+                raise RuntimeError("Indexer is unavailable; no job accepted")
+            return self.store.enqueue(tenant, kind, payload)
 
     def search(self, tenant, query, k=5, mode="hybrid", cache=True):
         start = time.perf_counter()

@@ -1,5 +1,20 @@
 # Technical status
 
+## Reject work without a live indexer (2026-11-06 UTC)
+
+AI-assisted implementation and verification by ChatGPT Work. Job admission now
+checks worker liveness and the shutdown signal under the publication lock;
+shutdown sets that signal under the same lock. A closed or already-dead worker
+cannot silently accept a durable job that it will never process. The HTTP layer
+maps this explicit unavailability to 503. Jobs accepted before shutdown remain
+durable and retain existing restart recovery.
+
+Two regression cases verify closed-service and dead-worker rejection without
+new persisted jobs. All 35 unit/HTTP tests and the 36-query retrieval evaluation
+pass in the cloud runtime. Prior commit d88f0bb hosted CI passed. This change's
+hosted CI must verify the pinned environment and Docker path. This is an
+admission-time check, not a guarantee against a worker failing afterward.
+
 ## Transient queue-claim contention
 
 AI-assisted implementation and cloud verification by ChatGPT Work on
