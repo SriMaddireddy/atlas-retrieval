@@ -21,6 +21,7 @@ class Service:
         self.ollama_url = ollama_url
         self.ollama_model = ollama_model
         self.lock = threading.RLock()
+        self.admission_lock = threading.Lock()
         self.stop = threading.Event()
         self.snapshots = {}
         self.cache = collections.OrderedDict()
@@ -42,7 +43,7 @@ class Service:
         self.thread.start()
 
     def close(self):
-        with self.lock:
+        with self.admission_lock:
             self.stop.set()
         self.thread.join(timeout=20)
         if self.thread.is_alive():
@@ -107,7 +108,7 @@ class Service:
     def enqueue(self, tenant, kind, payload):
         if self.readonly:
             raise PermissionError("This deployment is a read-only demo")
-        with self.lock:
+        with self.admission_lock:
             if self.stop.is_set() or not self.thread.is_alive():
                 raise RuntimeError("Indexer is unavailable; no job accepted")
             return self.store.enqueue(tenant, kind, payload)

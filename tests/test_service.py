@@ -1,4 +1,5 @@
 import unittest, tempfile, time, json, threading
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from unittest.mock import patch
 from atlas.service import Service
@@ -117,6 +118,31 @@ class ServiceTests(unittest.TestCase):
             resume.set()
             self.assertEqual(self.wait(key)["status"], "complete")
         self.assertEqual(self.s.search("platform", "Quasar")["version"], 2)
+
+    def test_search_continues_while_job_admission_waits(self):
+        entered = threading.Event()
+        resume = threading.Event()
+        original = self.s.store.enqueue
+
+        def delayed_enqueue(*args):
+            entered.set()
+            if not resume.wait(5):
+                raise TimeoutError("Test did not release queue admission")
+            return original(*args)
+
+        with patch.object(self.s.store, "enqueue", side_effect=delayed_enqueue):
+            with ThreadPoolExecutor(max_workers=2) as pool:
+                job = pool.submit(self.s.enqueue, "platform", "upsert", [self.doc()])
+                try:
+                    self.assertTrue(entered.wait(2))
+                    search = pool.submit(self.s.search, "platform", "Kafka consumer lag")
+                    result = search.result(timeout=2)
+                    self.assertEqual(result["version"], 1)
+                    self.assertEqual(result["results"][0]["document_id"], "lag")
+                    self.assertFalse(job.done())
+                finally:
+                    resume.set()
+                self.assertEqual(self.wait(job.result(timeout=2))["status"], "complete")
 
     def test_extractive_quotes_and_valid_citations(self):
         a = self.s.answer("platform", "database connection acquisition timeouts")

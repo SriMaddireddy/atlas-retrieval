@@ -1,5 +1,20 @@
 # Technical status
 
+## Search during queue admission (2026-11-10 UTC)
+
+AI-assisted implementation and verification by ChatGPT Work. Queue admission
+and shutdown now share a separate lock. A slow queue insert no longer holds the
+lock search needs to capture the current snapshot. Publication still holds its
+own lock across the database commit and snapshot swap.
+
+The concurrency regression pauses queue admission and checks that search returns
+the current version before the insert resumes. It times out on the parent
+commit and passes with the fix. All 36 unit and HTTP integration tests passed
+on Linux with Python 3.12.14 and NumPy 2.3.5. The 36-query synthetic retrieval
+evaluation matched the existing recall and MRR baselines, with 3/3 abstentions.
+This test isolates lock behavior and does not measure production latency.
+Retained-version storage and queue overload remain open review items.
+
 ## Reject work without a live indexer (2026-11-06 UTC)
 
 AI-assisted implementation and verification by ChatGPT Work. Job admission now
