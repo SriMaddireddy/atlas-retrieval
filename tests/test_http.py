@@ -1,5 +1,6 @@
 import json, threading, tempfile, unittest, urllib.request, urllib.error, time
 from pathlib import Path
+from unittest.mock import patch
 from atlas.server import Server
 from atlas.service import Service
 
@@ -45,6 +46,15 @@ class HttpTests(unittest.TestCase):
 
     def test_auth_is_required(self):
         self.assertEqual(self.request("/v1/stats", key="bad")[0], 401)
+
+    def test_queue_overload_returns_retryable_error_without_acceptance(self):
+        with patch.object(
+            self.svc.store, "enqueue", side_effect=OverflowError("Index queue is full; retry later")
+        ):
+            code, body = self.request("/v1/documents/lag", method="DELETE")
+        self.assertEqual(code, 429)
+        self.assertIn("queue is full", body["error"])
+        self.assertNotIn("job_id", body)
 
     def test_health_needs_no_auth(self):
         self.assertEqual(self.request("/healthz", key="")[0], 200)

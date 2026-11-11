@@ -1,5 +1,12 @@
 # Technical status
 
+## Completion audit (2026-11-11 UTC)
+
+The bounded local demonstration scope has passed the final source-runtime
+audit. Hosted CI on this change must pass before transition to
+`ad-impression-telemetry`. See [completion evidence](COMPLETION.md).
+
+
 ## Search during queue admission (2026-11-10 UTC)
 
 AI-assisted implementation and verification by ChatGPT Work. Queue admission
@@ -78,11 +85,10 @@ Evidence:
 - Runtime NumPy differs from the pinned requirements. Hosted CI must verify the
   pinned environment and Docker path; no new model inference was performed.
 
-## Remaining completion evidence
+## Earlier completion checklist
 
-Atlas is still the active project. Verify CI for this change before declaring
-it complete. Review queue overload, shutdown recovery and retained-version
-storage bounds, and record reproducible evidence for any further changes.
+The queue, recovery and retained-storage checks above are superseded by the
+completion audit linked below. Verify its hosted CI before transition.
 Existing retrieval labels were authored with the synthetic corpus and do not
 establish independent relevance or production capacity.
 

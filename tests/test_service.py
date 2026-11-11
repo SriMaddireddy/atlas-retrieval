@@ -92,6 +92,30 @@ class ServiceTests(unittest.TestCase):
         )
         self.assertEqual(self.s.stats("platform")["version"], 2)
 
+    def test_restart_prunes_old_versions_and_preserves_active_search(self):
+        for index in range(3):
+            self.assertEqual(
+                self.wait(self.s.enqueue("platform", "upsert", [self.doc()]))["status"],
+                "complete",
+            )
+        with self.s.store.connect() as connection:
+            before = connection.execute("SELECT count(*) FROM chunks").fetchone()[0]
+        self.s.close()
+        self.s = Service(self.path)
+        with self.s.store.connect() as connection:
+            after = connection.execute("SELECT count(*) FROM chunks").fetchone()[0]
+            stale = connection.execute(
+                "SELECT count(*) FROM chunks c JOIN versions v ON c.tenant=v.tenant "
+                "WHERE c.version != v.version"
+            ).fetchone()[0]
+        self.assertLess(after, before)
+        self.assertEqual(stale, 0)
+        self.assertEqual(self.s.stats("platform")["version"], 4)
+        self.assertEqual(
+            self.s.search("platform", "chartreuse recovery")["results"][0]["document_id"],
+            "novel",
+        )
+
     def test_failed_build_preserves_active_snapshot(self):
         with patch.object(Snapshot, "build", side_effect=RuntimeError("injected")):
             key = self.s.enqueue("platform", "upsert", [self.doc()])
