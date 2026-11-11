@@ -2,9 +2,10 @@
 
 ## Completion audit (2026-11-11 UTC)
 
-The bounded local demonstration scope has passed the final source-runtime
-audit. Hosted CI on this change must pass before transition to
-`ad-impression-telemetry`. See [completion evidence](COMPLETION.md).
+The bounded local demonstration scope is complete. The final audit and hosted
+CI passed on implementation/test commit `8dd6e312d253fff29583b41e708e021cf22f04a9`.
+The next active project is `ad-impression-telemetry`.
+See [completion evidence](COMPLETION.md).
 
 
 ## Search during queue admission (2026-11-10 UTC)

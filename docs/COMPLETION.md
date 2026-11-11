@@ -35,8 +35,10 @@ indefinitely unattended storage operation remain future engineering work.
   p95 2.920 ms and 600 cache hits. Both paths returned zero empty results.
   Nine queued rebuilds took 1.132 seconds. These in-process measurements exclude
   HTTP and generation and do not establish production capacity.
-- Hosted CI must confirm pinned NumPy and the container build, health check,
-  live HTTP smoke, evaluation and benchmark for this exact change.
+- [Hosted CI run 43044626090](https://github.com/SriMaddireddy/atlas-retrieval/actions/runs/43044626090)
+  passed on audit commit `8dd6e312d253fff29583b41e708e021cf22f04a9`, including
+  pinned dependencies, all tests, container build and health check, live HTTP
+  smoke, evaluation and benchmark.
 
 Run the README verification commands to reproduce. CI uploads its JSON reports
 and container log as the atlas-verification artifact. See the Actions run
@@ -61,7 +63,8 @@ Automatic online garbage collection, job retention and compaction are deferred.
 
 Setup, API usage, architecture, tradeoffs, regression baselines and end-to-end
 demo are documented and verified for the accepted scope. No critical defect
-was identified in this audit. Transition after the audit commit passes CI.
+was identified in this audit. The audit commit passed CI, completing this scope. Continue with
+`ad-impression-telemetry`.
 Additional models, independent relevance datasets, strict per-tenant BM25
 statistics, online storage collection and distributed deployment are future
 work and do not extend this milestone.
